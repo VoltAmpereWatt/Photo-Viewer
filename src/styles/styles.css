@@ -53,3 +53,17 @@
   flex-direction: row;
   flex-wrap: wrap;
 }
+
+#root > div > form > div > div > input{
+  margin:5px;
+  border:solid 1px lightgray;
+  border-radius:5px;
+  padding:5px;
+}
+
+#root > div > form > div > div > button{
+  margin:5px;
+  border:solid 1px lightgray;
+  border-radius:5px;
+  padding:5px;
+}

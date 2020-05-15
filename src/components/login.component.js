@@ -5,12 +5,15 @@ import '../styles/styles.css';
 function Login(props) {
   return (
     <form>
-      <div className="form-row">
-        <div className="form-group col-md-6">
-          <input type='text' className={'form-control'} placeholder={'Username'}></input>
+      <div className="form-group">
+        <div>
+          <input type='text' className={'col-md-6'} placeholder={'Username'}></input>
         </div>
-        <div className="form-group col-md-6">
-        <input type='password' className={'form-control'} placeholder={'Password'}></input>
+        <div>
+          <input type='password' className={'col-md-6'} placeholder={'Password'}></input>
+        </div>
+        <div>
+          <button type={'submit'} id={'login-button'} className={'btn btn-dark col-md-6'}>Login</button>
         </div>
       </div>
     </form>

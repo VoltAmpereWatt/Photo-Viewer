@@ -9,6 +9,7 @@ import img6 from '../images/Annotation 2020-05-02 170502.png'
 
 function Gallery(props) {
   return (
+    <div>
     <div className={props.galleryStyle}>
       <img src={img1} alt={'manhattan apartment'} ></img>
       <img src={img2} alt={'manhattan apartment'} ></img>
@@ -17,6 +18,11 @@ function Gallery(props) {
       <img src={img5} alt={'manhattan apartment'} ></img>
       <img src={img6} alt={'manhattan apartment'} ></img>
     </div>
+                <div>
+                <button type={'button'} id={'prev-page'} className={'btn btn-dark nav-button'}>Previous</button>
+                <button type={'button'} id={'next-page'} className={'btn btn-primary nav-button'}>Next</button>
+              </div>
+              </div>
   )
 }
 
