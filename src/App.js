@@ -14,8 +14,8 @@ export default class App extends Component {
     super(props);
     this.state = {
       grid: true,
-      username: 'rrr392',
-      signedOut: false
+      username: '',
+      signedOut: true
     }
     this.gridToggle = this.gridToggle.bind(this)
     this.handleUsernameChange = this.handleUsernameChange.bind(this)
@@ -47,16 +47,12 @@ export default class App extends Component {
             username={this.state.username}
             signoutToggleFunc={this.signedOutToggle}
             signedOutFlag={this.state.signedOut} />
-          <button
-            className={'btn btn-light centered'}
-            onClick={this.gridToggle}>View as {this.state.grid ? `List` : `Grid`}</button>
-          {/* {this.state.signedOut ? <Login /> : <Gallery galleryStyle={this.state.grid ? 'tile' : 'full'} />} */}
-          {/* {this.state.signedOut ?
-            null : null
-          } */}
           <Route path="/login" exact component={Login} />
-          <Route path="/gallery" exact 
-          render={(props)=><Gallery {...props} galleryStyle={this.state.grid ? 'tile' : 'full'} />} />
+          <Route path="/gallery" exact
+            render={(props) => <Gallery {...props}
+              galleryStyle={this.state.grid ? 'tile' : 'full'}
+              gridToggle={this.gridToggle}
+              gridView={this.state.grid} />} />
         </div>
       </Router>);
   }

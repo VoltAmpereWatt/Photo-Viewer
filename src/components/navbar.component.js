@@ -12,8 +12,8 @@ function Navbar(props) {
           <li className='navbar-item display-5 btn-link'><Link to='/'>{props.username}</Link></li>
           <li className='navbar-item display-5 btn-link'
             onClick={props.signout}>
-            <Link to='/create' onClick={props.signoutToggleFunc}>{props.signedOutFlag ? 'Login' : 'Sign Out'}
-              </Link>
+            <Link to='/create' onClick={props.signoutToggleFunc}>{props.signedOutFlag ? null : 'Sign Out'}
+            </Link>
           </li>
         </ul>
       </div>
