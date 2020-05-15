@@ -36,7 +36,7 @@
   margin:1%;
 } */
 
-#root > div > div.full > img{
+#root > div > div > div.full > img{
   display:block;
   max-width:100%;
   text-align: center;
@@ -46,7 +46,7 @@
   margin-bottom:1%;
 }
 
-#root > div > div.tile > img{
+#root > div > div > div.tile > img{
   max-width:20%;
   margin:1%;
   display: inline;

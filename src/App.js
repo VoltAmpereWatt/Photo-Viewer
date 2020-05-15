@@ -69,10 +69,12 @@ export default class App extends Component {
             username={this.state.username}
             signoutToggleFunc={this.signedOutToggle}
             signedOutFlag={this.state.signedOut} />
+
           <Route path="/login" exact render={(props) => <Login {...props}
             usernameChange={this.handleUsernameChange}
             passwordChange={this.handlePasswordChange} 
             onSubmit={this.onSubmit} />} />
+          
           <Route path="/gallery" exact
             render={(props) => <Gallery {...props}
               galleryStyle={this.state.grid ? 'tile' : 'full'}
