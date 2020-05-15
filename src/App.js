@@ -7,27 +7,34 @@ import Navbar from "./components/navbar.component";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Login from './components/login.component';
 import { render } from '@testing-library/react';
-
+import axios from 'axios';
 
 export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       grid: true,
-      username: '',
+      username: "",
+      password: "",
       signedOut: true
     }
     this.gridToggle = this.gridToggle.bind(this)
     this.handleUsernameChange = this.handleUsernameChange.bind(this)
+    this.handlePasswordChange = this.handlePasswordChange.bind(this)
     this.signedOutToggle = this.signedOutToggle.bind(this)
+    this.onSubmit = this.onSubmit.bind(this);
   }
 
   gridToggle(event) {
     this.setState({ grid: !this.state.grid })
   }
 
-  handleUsernameChange(event) {
+  handlePasswordChange(event) {
+    this.setState({ password: event.target.value })
+  }
 
+  handleUsernameChange(event) {
+    this.setState({ username: event.target.value })
   }
 
   signedOutToggle(event) {
@@ -39,6 +46,21 @@ export default class App extends Component {
     })
   }
 
+  onSubmit(e) {
+    // This line prevents default HTML form submission behavior
+    e.preventDefault();
+    const user = {
+      username: this.state.username,
+      password: this.state.password
+    }
+    console.log(user);
+    // axios.post('http://localhost:5000/users/add', user)
+    //   .then(res => console.log(res.data));
+    // to allow entering multiple users. instead of going back to main page, clear username.
+    // this.setState({ username: "" });
+    window.location = "/gallery";
+  }
+
   render() {
     return (
       <Router>
@@ -47,7 +69,10 @@ export default class App extends Component {
             username={this.state.username}
             signoutToggleFunc={this.signedOutToggle}
             signedOutFlag={this.state.signedOut} />
-          <Route path="/login" exact component={Login} />
+          <Route path="/login" exact render={(props) => <Login {...props}
+            usernameChange={this.handleUsernameChange}
+            passwordChange={this.handlePasswordChange} 
+            onSubmit={this.onSubmit} />} />
           <Route path="/gallery" exact
             render={(props) => <Gallery {...props}
               galleryStyle={this.state.grid ? 'tile' : 'full'}
