@@ -32,7 +32,9 @@ connection.once('open',() =>{
 
 // // the server will use the files created in routes
 // const exercisesRouter = require('./routes/exercises');
-// const usersRouter = require('./routes/users');
+const usersRouter = require('./routes/users');
+app.use('/users',usersRouter);
+
 
 
 app.listen(port, () => {
