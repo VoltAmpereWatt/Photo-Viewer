@@ -9,10 +9,21 @@ router.route('/add').post((req, res) => {
     username,
     password,
   })
-  console.log('In backend')
-  NewUser.save()
-    .then(() => res.json('Exercise added!'))
-    .catch(err => res.status(400).json('Error: ' + err));
+  console.log('Here')
+  Users.countDocuments({ username: NewUser.username }, function (error, result) {
+    if (result === 1) {
+      res.json(result);
+    }
+    else {
+      NewUser.save()
+        .then(() => res.json(NewUser))
+        .catch(error => res.status(400).json('Error: ' + error));
+    }
+  });
 })
+
+// router.route('/:id').get((req,res)=>{
+//   const
+// })
 
 module.exports = router;
