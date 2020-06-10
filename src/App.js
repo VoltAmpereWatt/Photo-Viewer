@@ -56,16 +56,16 @@ export default class App extends Component {
       username: this.state.username,
       password: this.state.password
     }
-    axios.post('http://localhost:5000/users/add', user)
-      .then((err,res) => {
-        console.log('in App')
-        // console.log(this.state);
-        // this.setState({
-        //   username: res.data.username,
-        //   password: res.data.password
-        // })
+    // Appending username to gallery url. username is extracted in route and passed to Gallery component
+    // In gallery component, username prop is used to make get request and get image urls
+
+    axios.post('http://localhost:5000/users/login', user)
+      .then(res => {
+        console.log('in App', res)
       })
-    window.location = `/gallery/${this.state.username}`;
+      .catch(res => alert(res))
+      window.location = `/gallery/${this.state.username}`;
+
   }
 
   render() {

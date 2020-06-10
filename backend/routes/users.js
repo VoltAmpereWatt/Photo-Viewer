@@ -9,7 +9,6 @@ router.route('/add').post((req, res) => {
     username,
     password,
   })
-  console.log('Here')
   Users.countDocuments({ username: NewUser.username }, function (error, result) {
     if (result === 1) {
       res.json(result);
@@ -22,8 +21,12 @@ router.route('/add').post((req, res) => {
   });
 })
 
-// router.route('/:id').get((req,res)=>{
-//   const
-// })
-
+router.route('/login').post((req, res) => {
+  return function (req, res) {
+    Users.find({ username: req.body.username, password: req.body.password }, function (error, users) {
+      if (error) res.status(500).send('User not found')
+      res.send({ users: users });
+    });
+  }
+})
 module.exports = router;

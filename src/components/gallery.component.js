@@ -1,20 +1,56 @@
 import React from 'react';
-// import img1 from '../images/manhattan-apartment-2.jpg'
-// import img2 from '../images/Woah there.jpg'
-// import img3 from '../images/MemeLoveTriangle_297886754.jpg'
-// import img4 from '../images/4m50wuzvxhg21.jpg'
-// import img5 from '../images/Dwvv7b2VsAAfj_3.jpg'
-// import img6 from '../images/Annotation 2020-05-02 170502.png'
-import { FaUpload } from 'react-icons/fa';
+import { FaPlus, FaMinus } from 'react-icons/fa';
+import ImageUploader from 'react-images-upload';
 import axios from 'axios';
 
 export default class Gallery extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      images: <div />
+      images: <div />,
+      file: [],
+      fileLoaded: 0,
+      imageUploadForm: false
     }
+    this.onDrop = this.onDrop.bind(this);
+    this.toggleImageUpload = this.toggleImageUpload.bind(this)
+    this.imageUpload = this.imageUpload.bind(this)
     this.populateImages = this.populateImages.bind(this)
+  }
+  onDrop(picture) {
+    this.setState({
+      file: this.state.file.concat(picture),
+    });
+    console.log(this.state.file.length)
+  }
+  toggleImageUpload() {
+    this.setState({ imageUploadForm: !this.state.imageUploadForm })
+  }
+
+  imageUpload = (e) => {
+    console.log(this.state.file)
+    let uploadImagePromises = this.state.file.map(image => {
+      let data = new FormData();
+      data.append('image', image, image.name)
+      console.log("here")
+      return axios.post(`http://localhost:5000/images/upload/${this.props.username}`, data);
+    })
+    // uploadImagePromises is now an array of promises for each image.
+    // the following line says that wait for all promises to be fulfilled before going further
+    axios.all(uploadImagePromises)
+      .then((response)=>{
+        console.log(response)
+        this.populateImages()
+        this.toggleImageUpload()
+        this.componentDidMount()
+        this.setState({file:[]})
+        console.log(this.state,"\nImage state repopulated")
+      })
+      .catch(errors=>{
+        console.log("errored")
+        console.log(errors)
+      })
+
   }
 
   componentDidMount() {
@@ -26,16 +62,13 @@ export default class Gallery extends React.Component {
   populateImages = async () => {
     axios.get(`http://localhost:5000/images/fetch/${this.props.username}`)
       .then((res) => {
-        console.log(res)
-        this.setState({ images: res.data.map((image,index)=><img key={index} src={image.url} alt={image._id}/>)})
-        console.log(res.data)
-        console.log(this.state.images)
+        this.setState({ images: res.data.map((image, index) => <img key={index} src={image.url} alt={image._id} />) })
       })
       .catch(err => console.log('Loading' + err))
   }
 
   render() {
-    console.log(this.props.states)
+    // console.log(this.props.states)
     return (
       <div>
         <div>
@@ -45,15 +78,28 @@ export default class Gallery extends React.Component {
           </button>
         </div>
         <div className={this.props.galleryStyle}>
-          {console.log(typeof(this.state.images))}
           {this.state.images}
-                    {/* {this.state.images.map((image, index) => <img src={this.state.images[index].url} alt={'asda'} />)} */}
         </div>
         <div>
           <button type={'button'} id={'prev-page'} className={'btn btn-dark nav-button'}>Previous</button>
-          <button type={'button'} id={'upload'} className={'btn nav-button'}><FaUpload /></button>
           <button type={'button'} id={'next-page'} className={'btn btn-primary nav-button'}>Next</button>
         </div>
+        <button className={'btn nav-button'} onClick={this.toggleImageUpload}>
+          {this.state.imageUploadForm ?
+            <FaMinus /> : <FaPlus />}
+        </button>
+        {this.state.imageUploadForm ?
+          <div>
+            <ImageUploader
+              // withIcon={true}
+              withPreview={true}
+              buttonText='Choose images'
+              onChange={this.onDrop}
+              imgExtension={['.jpg', '.gif', '.png']}
+              maxFileSize={5242880}
+            />
+            <button onClick={this.imageUpload}>Upload</button>
+          </div> : null}
       </div>
     )
   }

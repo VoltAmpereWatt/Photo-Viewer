@@ -67,3 +67,8 @@
   border-radius:5px;
   padding:5px;
 }
+
+#image-upload-form{
+  text-align: center;
+  /* margin:0 auto; */
+}
