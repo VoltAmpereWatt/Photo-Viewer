@@ -7,7 +7,8 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const path = require('path');
 // To have environment variables in the .env file
-require('dotenv').config();
+require('dotenv').config({ path: '' });
+);
 
 // Creating express server
 const app = express();
