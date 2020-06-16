@@ -59,7 +59,7 @@ export default class App extends Component {
     // Appending username to gallery url. username is extracted in route and passed to Gallery component
     // In gallery component, username prop is used to make get request and get image urls
 
-    axios.post('http://localhost:5000/users/login', user)
+    axios.post(`${process.env.PORT}/users/login`, user)
       .then(res => {
         console.log('in App', res)
       })

@@ -33,7 +33,7 @@ export default class Gallery extends React.Component {
       let data = new FormData();
       data.append('image', image, image.name)
       console.log("here")
-      return axios.post(`http://localhost:5000/images/upload/${this.props.username}`, data);
+      return axios.post(`${process.env.PORT}/images/upload/${this.props.username}`, data);
     })
     // uploadImagePromises is now an array of promises for each image.
     // the following line says that wait for all promises to be fulfilled before going further
@@ -60,7 +60,7 @@ export default class Gallery extends React.Component {
   }
 
   populateImages = async () => {
-    axios.get(`http://localhost:5000/images/fetch/${this.props.username}`)
+    axios.get(`${process.env.PORT}/images/fetch/${this.props.username}`)
       .then((res) => {
         this.setState({ images: res.data.map((image, index) => <img key={index} src={image.url} alt={image._id} />) })
       })
