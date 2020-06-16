@@ -31,7 +31,7 @@ var uploadFile = multer({
     bucket: BUCKET_NAME,
     metadata: function (req, file, cb) {
       cb(null, { fieldName: file.fieldname });
-    },  
+    },
     key: function (req, file, cb) {
       cb(null, req.fileKey)
     },
@@ -45,7 +45,7 @@ function toS3(request, response) {
   request.fileKey = uuid();
   let fileUrl = `https://photo-viewer-gallery.s3.us-east-2.amazonaws.com/${request.fileKey}`;
   return new Promise((uploaded, notUploaded) => {
-    return uploadSingleFile(request, response,err=>{
+    return uploadSingleFile(request, response, err => {
       if (err) return notUploaded(err);
       return uploaded(fileUrl)
     })
@@ -61,13 +61,13 @@ router.route('/fetch/:username').get((req, res) => {
 
 router.route('/upload/:username').post((req, res) => {
   toS3(req, res)
-    .then(fileUrl=>{
+    .then(fileUrl => {
       let newImage = new Images({
-        uploader:req.params.username,
-        url:fileUrl
+        uploader: req.params.username,
+        url: fileUrl
       })
       newImage.save()
-      .then(result=> res.json(result))
+        .then(result => res.json(result))
       console.log('Image uploaded')
     })
     .catch(err => console.log(err))

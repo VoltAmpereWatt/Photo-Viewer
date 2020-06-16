@@ -38,15 +38,15 @@ export default class Gallery extends React.Component {
     // uploadImagePromises is now an array of promises for each image.
     // the following line says that wait for all promises to be fulfilled before going further
     axios.all(uploadImagePromises)
-      .then((response)=>{
+      .then((response) => {
         console.log(response)
         this.populateImages()
         this.toggleImageUpload()
         this.componentDidMount()
-        this.setState({file:[]})
-        console.log(this.state,"\nImage state repopulated")
+        this.setState({ file: [] })
+        console.log(this.state, "\nImage state repopulated")
       })
-      .catch(errors=>{
+      .catch(errors => {
         console.log("errored")
         console.log(errors)
       })

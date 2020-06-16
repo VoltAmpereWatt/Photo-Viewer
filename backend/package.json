@@ -19,6 +19,7 @@
     "mongoose": "^5.9.15",
     "multiparty": "^4.2.1",
     "nodemon": "^2.0.4",
+    "react-images-upload": "^1.2.8",
     "uuid": "^8.1.0"
   }
 }

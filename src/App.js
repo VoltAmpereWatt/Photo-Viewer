@@ -64,8 +64,7 @@ export default class App extends Component {
         console.log('in App', res)
       })
       .catch(res => alert(res))
-      window.location = `/gallery/${this.state.username}`;
-
+    window.location = `/gallery/${this.state.username}`;
   }
 
   render() {

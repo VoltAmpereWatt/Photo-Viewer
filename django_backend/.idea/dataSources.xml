@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="MongoDB - test@cluster0-844ck.gcp.mongodb.net" uuid="66f75825-6c59-47ec-8d3c-8be2b7d36d50">
+      <driver-ref>mongo</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.dbschema.MongoJdbcDriver</jdbc-driver>
+      <jdbc-url>mongodb+srv://cluster0-844ck.gcp.mongodb.net/test?retryWrites=true&amp;w=majority</jdbc-url>
+    </data-source>
+  </component>
+</project>
