@@ -1,6 +1,6 @@
 const router = require('express').Router();
 let Users = require('../models/users.model');
-let Images = require('../models/Images.model');
+let Images = require('../models/images.model');
 const AWS = require('aws-sdk');
 const express = require('express');
 const app = express();
