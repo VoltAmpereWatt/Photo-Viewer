@@ -37,7 +37,7 @@ const uri = process.env.ATLAS_URI;
 // useNewUrlParser -> MongoDb node js rewrote driver to parse node js connection strings
 // useCreateIndex -> to deal with deprecated function
 // mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true });
-mongoose.connect(process.env.MONGODB_URI || URI);
+mongoose.connect(process.env.MONGODB_URI || uri);
 const connection = mongoose.connection;
 connection.once('open', () => {
   console.log("MongoDB datasbse connection established successfully")

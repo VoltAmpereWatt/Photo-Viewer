@@ -75,8 +75,8 @@ export default class App extends Component {
             username={this.state.username}
             signoutToggleFunc={this.signedOutToggle}
             signedOutFlag={this.state.signedOut} />
-          <Redirect to="/users/login" />
-          <Route path="/users/login" exact render={(props) => <Login {...props}
+          {/* <Redirect to="/users/login" /> */}
+          <Route path="/" exact render={(props) => <Login {...props}
             usernameChange={this.handleUsernameChange}
             passwordChange={this.handlePasswordChange}
             onSubmit={this.onSubmit} />} />
