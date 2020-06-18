@@ -8,7 +8,7 @@ const mongoose = require('mongoose');
 const path = require('path');
 // To have environment variables in the .env file
 require('dotenv').config();
-const URI = require('../config/index');
+const URI = require('./config/index');
 
 // Creating express server
 const app = express();
