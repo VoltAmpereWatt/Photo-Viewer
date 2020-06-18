@@ -7,7 +7,7 @@ import Navbar from "./components/navbar.component";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Login from './components/login.component';
 import axios from 'axios';
-
+import Crypto from 'crypto-js';
 
 export default class App extends Component {
   constructor(props) {
@@ -36,7 +36,7 @@ export default class App extends Component {
   }
 
   handleUsernameChange(event) {
-    console.log(this.state.username)
+    // console.log(this.state.username)
     this.setState({ username: event.target.value })
   }
 
@@ -54,17 +54,22 @@ export default class App extends Component {
     e.preventDefault();
     const user = {
       username: this.state.username,
-      password: this.state.password
+      password: Crypto.SHA256(this.state.password).toString()
     }
+    console.log(user.password)
     // Appending username to gallery url. username is extracted in route and passed to Gallery component
     // In gallery component, username prop is used to make get request and get image urls
-
-    axios.post(`/users/login`, user)
-      .then(res => {
-        console.log('in App', res)
+    console.log('before post')
+    axios.post('/users/login', user)
+      .then((res) => {
+        if (res.status === 200) window.location = `/gallery/${this.state.username}`;
       })
-      .catch(res => alert(res))
-    window.location = `/gallery/${this.state.username}`;
+      .catch(res => setTimeout(function()
+      {
+        alert(res)
+      },2000));
+    console.log('after post')
+
   }
 
   render() {

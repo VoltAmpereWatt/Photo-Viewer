@@ -91,14 +91,16 @@ export default class Gallery extends React.Component {
         {this.state.imageUploadForm ?
           <div>
             <ImageUploader
-              // withIcon={true}
+              withIcon={false}
               withPreview={true}
+              className={'card card-body'}
+              buttonClassName={'btn btn-secondary'}
               buttonText='Choose images'
               onChange={this.onDrop}
               imgExtension={['.jpg', '.gif', '.png']}
               maxFileSize={5242880}
             />
-            <button onClick={this.imageUpload}>Upload</button>
+            <button onClick={this.imageUpload} className={'btn btn-secondary'}>Upload</button>
           </div> : null}
       </div>
     )
