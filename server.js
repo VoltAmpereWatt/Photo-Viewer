@@ -12,6 +12,16 @@ const URI = require('./config/index');
 
 // Creating express server
 const app = express();
+
+//Serve static assets in production
+if(process.env.NODE_ENV === 'production'){
+  // set static folder.
+  app.use(express.static('react-ui/build'));
+  app.get('*',(req,res)=>{
+    res.sendFile(path.resolve(__dirname,'react-ui','build','index.html'));
+  })
+}
+
 // Port that server will be on
 const port = process.env.PORT || 5000;
 
