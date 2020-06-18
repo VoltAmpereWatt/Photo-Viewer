@@ -8,6 +8,7 @@ const mongoose = require('mongoose');
 const path = require('path');
 // To have environment variables in the .env file
 require('dotenv').config();
+const URI = require('../config/index');
 
 // Creating express server
 const app = express();
@@ -25,7 +26,8 @@ const uri = process.env.ATLAS_URI;
 // starting connections 
 // useNewUrlParser -> MongoDb node js rewrote driver to parse node js connection strings
 // useCreateIndex -> to deal with deprecated function
-mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true });
+// mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true });
+mongoose.connect(process.env.MONGODB_URI || URI);
 const connection = mongoose.connection;
 connection.once('open', () => {
   console.log("MongoDB datasbse connection established successfully")
