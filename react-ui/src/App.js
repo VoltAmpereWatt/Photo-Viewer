@@ -4,7 +4,7 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import Gallery from "./components/gallery.component";
 import Navbar from "./components/navbar.component";
-import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import Login from './components/login.component';
 import axios from 'axios';
 
