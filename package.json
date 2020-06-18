@@ -7,7 +7,7 @@
     "react-ui-install":"npm install --prefix react-ui",
     "server":"nodemon server.js",
     "react-ui":"npm start --prefix react-ui",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install npm install --prefix react-ui && npm run build --prefix react-ui",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix react-ui && npm run build --prefix react-ui",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
