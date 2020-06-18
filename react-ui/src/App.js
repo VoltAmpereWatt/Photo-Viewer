@@ -4,7 +4,7 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import Gallery from "./components/gallery.component";
 import Navbar from "./components/navbar.component";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import Login from './components/login.component';
 import axios from 'axios';
 
@@ -75,12 +75,11 @@ export default class App extends Component {
             username={this.state.username}
             signoutToggleFunc={this.signedOutToggle}
             signedOutFlag={this.state.signedOut} />
-
-          <Route path="/login" exact render={(props) => <Login {...props}
+          <Redirect to="/users/login" />
+          <Route path="/users/login" exact render={(props) => <Login {...props}
             usernameChange={this.handleUsernameChange}
             passwordChange={this.handlePasswordChange}
             onSubmit={this.onSubmit} />} />
-
           <Route path="/gallery/:id" exact
             render={(props) => <Gallery {...props}
               username={props.match.params.id}
