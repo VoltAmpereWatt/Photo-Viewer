@@ -62,6 +62,8 @@ export default class Gallery extends React.Component {
   populateImages = () => {
     axios.get(`/images/fetch/${this.props.username}`)
       .then((res) => {
+        console.log(typeof(res))
+        console.log(res)
         this.setState({ images: res.data.map((image, index) => <img key={index} src={image.url} alt={image._id} />) });
         this.state.images.forEach(image=>console.log(image.props.src))
       })
