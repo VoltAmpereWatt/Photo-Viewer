@@ -13,7 +13,7 @@ export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      grid: true,
+      grid: true,n
       username: "",
       password: "",
       signedOut: true,
@@ -64,10 +64,9 @@ export default class App extends Component {
       .then((res) => {
         if (res.status === 200) window.location = `/gallery/${this.state.username}`;
       })
-      .catch(res => setTimeout(function()
-      {
+      .catch(res => setTimeout(function () {
         alert(res)
-      },2000));
+      }, 2000));
     console.log('after post')
 
   }

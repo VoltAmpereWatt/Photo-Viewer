@@ -31,8 +31,8 @@ app.use(cors());
 app.use(express.json());
 
 // Database URI from mongo db atlas dashboard
-// have to set ATLAS_URI environment variable.
-const uri = process.env.ATLAS_URI;
+// have to set MONGODB_URI environment variable.
+
 // starting connections 
 // useNewUrlParser -> MongoDb node js rewrote driver to parse node js connection strings
 // useCreateIndex -> to deal with deprecated function
