@@ -13,7 +13,7 @@ export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      grid: true,n
+      grid: true,
       username: "",
       password: "",
       signedOut: true,
